@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ite5_2022/screens/admin/homea.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -87,15 +88,18 @@ class LoginScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        theButton("Login to Google", MediaQuery.of(context).size.width),
+        theButton(
+            "Login to Google", MediaQuery.of(context).size.width, 1, context),
         const SizedBox(
           height: 15,
         ),
-        theButton("Login to Twitter", MediaQuery.of(context).size.width),
+        theButton(
+            "Login to Twitter", MediaQuery.of(context).size.width, 2, context),
         const SizedBox(
           height: 15,
         ),
-        theButton("Login to Facebook", MediaQuery.of(context).size.width),
+        theButton(
+            "Login to Facebook", MediaQuery.of(context).size.width, 3, context),
         const SizedBox(
           height: 25,
         ),
@@ -121,11 +125,24 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget theButton(String caption, double width) {
+  // source 1=admin; 2=student
+  Widget theButton(
+      String caption, double width, int source, BuildContext context) {
     return Container(
       width: width * .75,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          if (source == 1) {
+            Navigator.pushReplacement(context,
+                new MaterialPageRoute(builder: (context) => new HomeAdmin()));
+          } else if (source == 2) {
+            Navigator.of(context).pushNamed('/home');
+          } else {
+            // Navigator.push(context,
+            //     new MaterialPageRoute(builder: (context) => new HomeAdmin()));
+            Navigator.popAndPushNamed(context, '/home');
+          }
+        },
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             padding:

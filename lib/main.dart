@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ite5_2022/screens/admin/homea.dart';
+import 'package:ite5_2022/screens/student/homes.dart';
 
 import 'screens/login.dart';
 
@@ -19,7 +21,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      // home: const LoginScreen(),
+      routes: {
+        '/': (context) => const LoginScreen(),
+        '/home-admin': (context) => const HomeAdmin(),
+        '/home': (context) => const HomeStudent(),
+      },
     );
   }
 }
